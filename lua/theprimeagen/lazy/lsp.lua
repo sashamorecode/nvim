@@ -32,8 +32,6 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "rust_analyzer",
-                "gopls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -76,12 +74,11 @@ return {
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
         cmp.setup({
             snippet = {
                 expand = function(args)
                     require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                end,
+                end
             },
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
